@@ -13,6 +13,13 @@ body {
     height:100%;
 }
 
+footer {
+    width:100%;
+	position:absolute;
+	bottom:0px;
+	height:0px;
+}
+
 .slide-image {
     width: 100%;
 }
@@ -54,9 +61,7 @@ body {
     color: #333;
 }
 
-footer {
-    margin: 0;
-}
+
 
 
 /*
@@ -70,17 +75,9 @@ footer {
 
 
 .content {
-	padding-bottom: 60px; /*height of the footer*/	
+	padding-bottom: 100px;
 }
 
-
-.footer {
-	width:100%;
-	position:absolute;
-	bottom:20px;
-	height: 60px;
-	
-}
 
 
 .dataTableImg {
