@@ -5,6 +5,9 @@ import java.util.List;
 import com.letrongtin.shoppingbackend.dto.Category;
 
 public interface CategoryDAO {
+	Category get(int id);
 	List<Category> list();
-	Category get(int i);
+	boolean add(Category category);
+	boolean update(Category category);
+	boolean delete(Category category);
 }
