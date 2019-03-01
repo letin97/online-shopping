@@ -55,6 +55,7 @@ public class ProductDAOImpl implements ProductDAO {
 		try {
 			product.setActive(false);
 			this.update(product);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

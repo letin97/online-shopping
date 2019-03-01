@@ -13,7 +13,7 @@ public class GlobalDefaultExceptionHandler {
 		ModelAndView mv = new ModelAndView("error");
 		mv.addObject("errorTitle", "The page is not constructed!");
 		mv.addObject("errorDescription", "The page you are looking for is not available now!");
-		mv.addObject("title", "404  Error Page");
+		mv.addObject("title", "404 Error Page");
 		return mv;
 	}
 	

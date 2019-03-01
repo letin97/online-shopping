@@ -14,8 +14,8 @@
 						</script>
 
 						<ol class="breadcrumb">
-							<li><a href="${contextRoot}/">Home</a></li>
-							<li class="active">All Products</li>
+							<li class="breadcrumb-item"><a href="${contextRoot}/">Home</a></li>
+							<li class="breadcrumb-item active">All Products</li>
 						</ol>
 					</c:if>
 
@@ -26,20 +26,17 @@
 						</script>
 
 						<ol class="breadcrumb">
-							<li><a href="${contextRoot}/">Home</a></li>
-							<li class="active">Category</li>
-							<li class="active">${category.name}</li>
+							<li class="breadcrumb-item"><a href="${contextRoot}/">Home</a></li>
+							<li class="breadcrumb-item active">Category</li>
+							<li class="breadcrumb-item active">${category.name}</li>
 						</ol>
 					</c:if>
-
 				</div>
 			</div>
 
-
 			<div class="row">
-
 				<div class="col-xs-12">
-					<table id="productListTable" class="table table-striped table-borderd">
+					<table id="productListTable" class="table table-striped">
 						<thead>
 							<tr>
 								<th></th>
@@ -62,7 +59,6 @@
 					</table>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>

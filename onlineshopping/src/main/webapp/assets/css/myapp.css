@@ -162,6 +162,11 @@ input:checked + .slider:before {
 	color: #ff0000;
 }
 
+.adminDataTableImg {
+	height: 50px;
+	width: 50px;
+}
+
 
 /*Shopping Cart*/
 .table>tbody>tr>td, .table>tfoot>tr>td{
