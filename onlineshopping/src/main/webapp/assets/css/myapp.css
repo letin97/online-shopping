@@ -204,6 +204,15 @@ input:checked + .slider:before {
 	
 }
 
+.cartImg {
+	width: 100px;
+	height: 100px;
+}
+
+.unavailable{
+	color: red;
+}
+
 
 /* cart checkout */
 .panel-title {display: inline;font-weight: bold;}
@@ -244,4 +253,7 @@ input:checked + .slider:before {
 		height:100%;
 		z-index:9999;
 		background:url(../images/pre-loader.gif) 50% no-repeat #fff
+}
+.table-responsive{
+	overflow-x: inherit;
 }

@@ -22,4 +22,32 @@
       <servlet-name>dispatcher</servlet-name>
       <url-pattern>/</url-pattern>
    </servlet-mapping>
+   
+   
+   <!-- Creates the Spring Container shared by all Servlets and Filters -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <listener>
+    <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+  </listener>
+  
+   <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+      /WEB-INF/spring-security.xml 
+    </param-value>
+  </context-param>
+  
+  <!-- Spring Security -->
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+   
 </web-app>

@@ -20,26 +20,37 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String code;
+	
 	@NotBlank(message = "Please enter the product name!")
 	private String name;
+	
 	@NotBlank(message = "Please enter the product brand!")
 	private String brand;
+	
 	@NotBlank(message = "Please enter the product description!")
 	private String description;
+	
 	@Column(name="unit_price")
 	@Min(value = 1 , message = "The unit price not less than 1")
 	private double unitPrice;
+	
 	private int quantity;
+	
 	@Column(name = "is_active")	
 	private boolean active;
+	
 	@Column(name="category_id")
 	@JsonIgnore
 	private int categoryId;
+	
 	@Column(name="supplier_id")
 	@JsonIgnore
 	private int supplierId;
+	
 	private int purchases;
+	
 	private int views;
 	
 	@Transient
