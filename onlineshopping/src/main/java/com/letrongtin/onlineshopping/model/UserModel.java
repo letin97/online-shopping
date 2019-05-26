@@ -3,6 +3,7 @@ package com.letrongtin.onlineshopping.model;
 import java.io.Serializable;
 
 import com.letrongtin.shoppingbackend.dto.Cart;
+import com.letrongtin.shoppingbackend.dto.OrderDetail;
 
 public class UserModel implements Serializable {
 

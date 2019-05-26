@@ -4,9 +4,13 @@ import java.io.File;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.letrongtin.onlineshopping.controller.ManagementController;
+
 public class FileUploadUtility {
+	private static final Logger logger = Logger.getLogger(FileUploadUtility.class);
 
 	private static final String ABS_PATH = "D:\\Java\\Spring\\online-shopping\\onlineshopping\\src\\main\\webapp\\assets\\images\\";
 	private static String REAL_PATH = "";
@@ -23,6 +27,8 @@ public class FileUploadUtility {
 		}
 		
 		try {
+			
+			logger.debug(REAL_PATH);
 			// sever upload
 			file.transferTo(new File(REAL_PATH + code + ".jpg"));
 			// project directory upload

@@ -89,4 +89,27 @@ public class ProductDAOImpl implements ProductDAO {
 				.getResultList();
 	}
 
+	
+	@Override
+	public List<Product> searchProducts(String key) {
+		String query = "FROM Product WHERE name like '%" + key + "%'";
+		
+		return sessionFactory
+					.getCurrentSession()
+					.createQuery(query,Product.class)
+					.getResultList();
+	}
+
+	@Override
+	public List<Product> getTopProductsByCategory(int category, int count) {
+		String query = "FROM Product WHERE active = true AND categoryId = " + category + " ORDER BY views DESC";
+				
+		return sessionFactory
+					.getCurrentSession()
+					.createQuery(query,Product.class)
+					.setFirstResult(0)
+					.setMaxResults(count)
+					.getResultList();
+	}
+
 }

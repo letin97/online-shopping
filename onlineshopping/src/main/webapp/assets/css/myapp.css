@@ -66,6 +66,12 @@ footer {
 	height: 100px;
 }
 
+.img-promotion {
+    max-width: 100%;
+    height: 134px;
+    margin-bottom: 5px;
+}
+
 
 
 
@@ -256,4 +262,38 @@ input:checked + .slider:before {
 }
 .table-responsive{
 	overflow-x: inherit;
+}
+
+.li-nav {
+	*float: left;
+    width: 75px;
+    height: 44px;
+    color: #fff;
+    font-size: 13px;
+    text-align: center;
+    position: relative;
+    text-decoration: none;
+}
+
+.icon-nav {
+	background-position: -190px 0;
+    display: block;
+    margin: 0px auto 0px;
+    color: #fff;
+}
+
+.icon-tex {
+	color: #fff;
+	text-decoration: none
+	text-align: center;
+}
+
+.giveMeEllipsis {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 3; /* number of lines to show */
+   line-height: 1.5;        /* fallback */
+   max-height: 4.5;       /* fallback */
 }

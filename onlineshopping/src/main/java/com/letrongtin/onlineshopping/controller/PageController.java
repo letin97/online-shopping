@@ -53,14 +53,14 @@ public class PageController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/show/all/products")
-	public ModelAndView showAllProducts() {
-		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "All Products");
-		mv.addObject("userClickAllProducts", true);
-		mv.addObject("categories", categoryDAO.list());
-		return mv;
-	}
+//	@RequestMapping(value = "/show/all/products")
+//	public ModelAndView showAllProducts() {
+//		ModelAndView mv = new ModelAndView("page");
+//		mv.addObject("title", "All Products");
+//		mv.addObject("userClickAllProducts", true);
+//		mv.addObject("categories", categoryDAO.list());
+//		return mv;
+//	}
 	
 	@RequestMapping(value = "/show/category/{id}/products")
 	public ModelAndView showCategoryProducts(@PathVariable("id") int id) {
@@ -121,6 +121,15 @@ public class PageController {
 			new SecurityContextLogoutHandler().logout(request, response, authentication);
 		}
 		return "redirect:/login?logout";
+	}
+	
+	@RequestMapping(value = "/search")
+	public ModelAndView searchProducts(@RequestParam(name="key") String key) {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Search");
+		mv.addObject("userClickSearch", true);
+		mv.addObject("key", key);
+		return mv;
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,22 +21,30 @@ import org.springframework.web.servlet.ModelAndView;
 import com.letrongtin.onlineshopping.util.FileUploadUtility;
 import com.letrongtin.onlineshopping.validator.ProductValidator;
 import com.letrongtin.shoppingbackend.dao.CategoryDAO;
+import com.letrongtin.shoppingbackend.dao.OrderDAO;
 import com.letrongtin.shoppingbackend.dao.ProductDAO;
 import com.letrongtin.shoppingbackend.dto.Category;
+import com.letrongtin.shoppingbackend.dto.OrderDetail;
 import com.letrongtin.shoppingbackend.dto.Product;
 
 @Controller
 @RequestMapping("/manage")
 public class ManagementController {
 	
+	private static final Logger logger = Logger.getLogger(ManagementController.class);
+	
 	@Autowired
 	CategoryDAO categoryDAO;
 	
 	@Autowired
 	ProductDAO productDAO;
+	
+	@Autowired
+	OrderDAO orderDAO;
 
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public ModelAndView showManageProducts(@RequestParam(name="operation", required=false) String operation) {
+		
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Manage Products");
 		mv.addObject("userClickManageProducts", true);
@@ -71,6 +80,8 @@ public class ManagementController {
 	@RequestMapping(value = "/products", method = RequestMethod.POST)
 	public String handlerProductSubmit(@Valid @ModelAttribute("product") Product product,
 			BindingResult result, Model model, HttpServletRequest request) {
+		
+		logger.debug("POSSSSSSSSSSSSSSSSSSSSSSSST");
 		
 		if (product.getId() == 0) {
 			new ProductValidator().validate(product, result);
@@ -129,5 +140,36 @@ public class ManagementController {
 	@ModelAttribute("category")
 	public Category getCategory(){
 		return new Category();
+	}
+	
+	@RequestMapping(value = "/orders", method = RequestMethod.GET)
+	public ModelAndView showManageOrders(@RequestParam(name="result", required=false) String result) {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Manage Orders");
+		mv.addObject("userClickManageOrders", true);
+		
+		if (result != null) {
+			mv.addObject("message", "Order has been changed successfully!");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "/order/{id}/activation")
+	public String handlerOrderActivation(@PathVariable("id") int id) {
+		
+		OrderDetail orderDetail = orderDAO.get(id);
+		orderDetail.setStatus(1);
+		orderDAO.update(orderDetail);
+		return "redirect:/manage/orders?result=activation";
+	}
+	
+	@RequestMapping(value = "/order/{id}/cancel")
+	public String handlerOrderCancel(@PathVariable("id") int id) {
+		
+		OrderDetail orderDetail = orderDAO.get(id);
+		orderDetail.setStatus(-1);
+		orderDAO.update(orderDetail);
+		return "redirect:/manage/orders?result=cancel";
 	}
 }

@@ -44,6 +44,12 @@ public class CartController {
 				break;
 			}
 		}
+		else {
+			String response = cartService.validateCartLine();
+			if (response.equals("result=modified")) {
+				mv.addObject("messsege", "One or more items inside cart has been modified!");
+			}
+		}
 		mv.addObject("title", "User Cart");
 		mv.addObject("userClickShowCart", true);
 		mv.addObject("cartLines", cartService.getCartLines());
@@ -66,5 +72,16 @@ public class CartController {
 	public String addCart(@PathVariable(name="productId") int productId) {
 		String response = cartService.addCartLine(productId);
 		return "redirect:/cart/show?" + response;
+	}
+	
+	@RequestMapping("/validate")
+	public String validateCart() {	
+		String response = cartService.validateCartLine();
+		if(!response.equals("result=success")) {
+			return "redirect:/cart/show?"+response;
+		}
+		else {
+			return "redirect:/cart/checkout";
+		}
 	}
 }

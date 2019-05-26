@@ -68,7 +68,7 @@
 
 			<!--  User click view all product or category-->
 			<c:if
-				test="${userClickAllProducts == true or userClickCategoryProducts == true}">
+				test="${userClickAllProducts == true or userClickCategoryProducts == true or userClickSearch == true}">
 				<%@include file="listProducts.jsp"%>
 			</c:if>
 			
@@ -84,10 +84,28 @@
 				<%@include file="manageProducts.jsp"%>
 			</c:if>
 			
-			<!--  User click manage product-->
+			<!--  User click show cart-->
 			<c:if
 				test="${userClickShowCart == true}">
 				<%@include file="cart.jsp"%>
+			</c:if>
+			
+			<!--  User click show order-->
+			<c:if
+				test="${userClickShowOrder == true}">
+				<%@include file="order.jsp"%>
+			</c:if>
+			
+			<!--  User click show order detail-->
+			<c:if
+				test="${userClickShowOrderItem == true}">
+				<%@include file="singleOrder.jsp"%>
+			</c:if>
+			
+			<!--  User click manage order-->
+			<c:if
+				test="${userClickManageOrders == true}">
+				<%@include file="manageOrders.jsp"%>
 			</c:if>
 
 		</div>

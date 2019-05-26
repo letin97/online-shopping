@@ -21,6 +21,9 @@ $(function() {
 	case 'Manage Products':
 		$('#manageProducts').addClass('active');
 		break;
+	case 'Manage Orders':
+		$('#manageOrders').addClass('active');
+		break;
 	default:
 		$('#listProducts').addClass('active');
 		$('#a_' + menu).addClass('active');
@@ -317,5 +320,78 @@ $(function() {
 			}
 		}
 	})
+	
+	// TABLE MANAGE ORDER
+	// code for jquery dataTable
+	var $adminOrdersTable = $('#adminOrdersTable');
+	
+	if ($adminOrdersTable.length) {
+		
+
+		var jsonUrl = window.contextRoot + '/json/data/admin/all/orders';
+		
+		$adminOrdersTable.DataTable({
+			lengthMenu: [[10,30,50,-1], ['10 Records', '30 Records', '50 Records', 'ALL']],
+			pageLength: 10,
+			ajax: {
+				url: jsonUrl,
+				dataSrc: ''
+			},
+			columns: [
+				{
+					data: 'id',
+					mRender: function(data, type, row) {
+						return '&#35;' + data + ' ' + row.user.firstName + ' ' + row.user.lastName;
+					}
+				},
+				{
+					data: 'user',
+					mRender: function(data, type, row) {
+						return data.email;
+					}
+				},
+				{
+					data: 'orderDate',
+				},
+				{
+					data: 'status',
+					mRender: function(data, type, row) {
+						if (data === 1) {
+							return '<span class="glyphicon glyphicon-ok" style="color:green"></span>';
+						}
+						else if (data === 0) {
+							return '<span class="glyphicon glyphicon-inbox" style="color:yellow"></span> ';
+						}
+						else if (data === -1) {
+							return '<span class="glyphicon glyphicon-remove" style="color:red"></span> ';
+						}
+					}
+				},
+				{
+					data: 'shipping',
+					mRender: function(data, type, row) {
+						return data.addressLineOne + ", " + data.addressLineTwo + ", " + data.city + ", " + data.country;
+					}
+				},
+				{
+					data: 'orderTotal',
+					mRender: function(data, type, row) {
+						return '&#8377; ' + data;
+					}
+				},
+				
+				{
+					data: 'id',
+					bSortable: false,
+					mRender: function(data, type, row) {
+						var str = '';
+						str += '<a href="'+window.contextRoot+'/orders/show/' +data+ '/order">';
+						str += 'View Detail</a>';
+						return str;
+					}
+				}
+			]
+		});
+	}
 		
 });

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.letrongtin.shoppingbackend.dao.CartLineDAO;
 import com.letrongtin.shoppingbackend.dto.Cart;
 import com.letrongtin.shoppingbackend.dto.CartLine;
+import com.letrongtin.shoppingbackend.dto.OrderDetail;
 
 @Repository("cartLineDAO")
 @Transactional
@@ -46,10 +47,11 @@ public class CartLineDAOImpl implements CartLineDAO {
 	}
 
 	@Override
-	public boolean delete(CartLine cartLine) {
+	public boolean remove(CartLine cartLine) {
 		try {
-			cartLine.setAvailable(false);
-			this.update(cartLine);
+			//cartLine.setAvailable(false);
+			//this.update(cartLine);
+			session.getCurrentSession().delete(cartLine);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -67,11 +69,12 @@ public class CartLineDAOImpl implements CartLineDAO {
 
 	@Override
 	public List<CartLine> listAvailable(int cartId) {
-		String sql = "FROM CartLine WHERE cartId = :cartId AND available = :available";
-		return session.getCurrentSession().createQuery(sql, CartLine.class)
-				.setParameter("cartId", cartId)
-				.setParameter("available", true)
-				.getResultList();
+		String query = "FROM CartLine WHERE cartId = :cartId AND available = :available";
+		return session.getCurrentSession()
+								.createQuery(query, CartLine.class)
+									.setParameter("cartId", cartId)
+									.setParameter("available", true)
+										.getResultList();
 	}
 
 	@Override
@@ -94,6 +97,17 @@ public class CartLineDAOImpl implements CartLineDAO {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public boolean addOrderDetail(OrderDetail orderDetail) {
+		try {			
+			session.getCurrentSession().persist(orderDetail);			
+			return true;
+		}
+		catch(Exception ex) {
 			return false;
 		}
 	}

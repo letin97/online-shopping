@@ -10,6 +10,8 @@ import javax.persistence.Id;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Address implements Serializable{
 	
@@ -44,9 +46,11 @@ public class Address implements Serializable{
 	private String postalCode;
 	
 	@Column(name="is_shipping")
+	@JsonIgnore
 	private boolean shipping;
 	
 	@Column(name="is_billing")
+	@JsonIgnore
 	private boolean billing;
 
 	public int getId() {
@@ -123,6 +127,7 @@ public class Address implements Serializable{
 	
 	
 	@Column(name = "user_id")
+	@JsonIgnore
 	private int userId;
 	public int getUserId() {
 		return userId;
