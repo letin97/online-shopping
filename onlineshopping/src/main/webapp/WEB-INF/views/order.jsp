@@ -29,10 +29,13 @@
 							<td data-th="Total Amount">&#8377; ${order.orderTotal}</td>
 							<c:choose>
 								<c:when test="${order.status == 0}">
-									<td data-th="Status">Pending</td>
+									<td data-th="Status"><span class="glyphicon glyphicon-inbox" style="color:yellow"></span></td>
+								</c:when>
+								<c:when test="${order.status == -1}">
+									<td data-th="Status"><span class="glyphicon glyphicon-remove" style="color:red"></span></td>
 								</c:when>
 								<c:otherwise>
-									<td data-th="Status">Complete</td>
+									<td data-th="Status"><span class="glyphicon glyphicon-ok" style="color:green"></td>
 								</c:otherwise>
 							</c:choose>
 							<td class="actions" data-th=""><a

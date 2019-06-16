@@ -50,7 +50,7 @@
 					<span class="glyphicon glyphicon-pencil"></span>Edit</a>		
 			</security:authorize>
 						
-			<a href="${contextRoot}/show/all/products" class="btn btn-primary">Back</a>
+			<a href="${contextRoot}/" class="btn btn-primary">Back</a>
 		</div>
 	</div>
 </div>
